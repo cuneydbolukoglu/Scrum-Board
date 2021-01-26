@@ -52,39 +52,42 @@ const Register = props => {
     }
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Form>
-                    <h1>New Account</h1>
-                    <Form.Group controlId="formGroupEmail">
-                        <Form.Control
-                            type="email"
-                            placeholder="Email"
-                            onChange={(e) => setEmail(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group controlId="formGroupPassword">
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group controlId="formGroupPasswordMatch">
-                        <Form.Control
-                            type="password"
-                            placeholder="Password Match"
-                            onChange={(e) => setRepeatPassword(e.target.value)} />
-                    </Form.Group>
-                    <Button
-                        onClick={onButtonClick}
-                        variant="dark"
-                    >Sign Up</Button>
-                    <ErrorMessage message={errorMessage} result={errorResult} />
-                    <Link to='/'>
-                        <Button variant="light">Login</Button>
-                    </Link>
-                </Form>
-            </Row>
-        </Container>
+        <section className="full-screen">
+            <Container>
+                <Row className="justify-content-md-center">
+                    <Form>
+                        <h1>New Account</h1>
+                        <Form.Group controlId="formGroupEmail">
+                            <Form.Control
+                                type="email"
+                                placeholder="Email"
+                                onChange={(e) => setEmail(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="formGroupPassword">
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                onChange={(e) => setPassword(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="formGroupPasswordMatch">
+                            <Form.Control
+                                type="password"
+                                placeholder="Password Match"
+                                onChange={(e) => setRepeatPassword(e.target.value)} />
+                        </Form.Group>
+                        <Button
+                            onClick={onButtonClick}
+                            variant="dark"
+                            block
+                        >Sign Up</Button>
+                        <ErrorMessage message={errorMessage} result={errorResult} />
+                        <Link to='/'>
+                            <Button variant="light" block>Login</Button>
+                        </Link>
+                    </Form>
+                </Row>
+            </Container>
+        </section>
     )
 }
 

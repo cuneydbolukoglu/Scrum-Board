@@ -54,7 +54,7 @@ const Register = props => {
     return (
         <section className="full-screen">
             <Container>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-center">
                     <Form>
                         <h1>New Account</h1>
                         <Form.Group controlId="formGroupEmail">

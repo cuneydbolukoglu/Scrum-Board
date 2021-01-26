@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LogoutIcon from '../assets/img/sign-out-alt-solid.svg';
 import { auth } from '../firebase';
@@ -22,14 +23,14 @@ const Home = props => {
     }
 
     return (
-        <div className="wrapper" >
-            <div className="home-page">
-                <article>Hoşgeldiniz, <b>{user}</b></article>
+        <Container>
+            <Row className="justify-content-between">
+                <p>Hoşgeldiniz, <b>{user}</b></p>
                 <Link to="/" onClick={userLogout}>
                     <button className="button-logout">Logout<img src={LogoutIcon} alt="Logout" /></button>
                 </Link>
-            </div>
-        </div>
+            </Row>
+        </Container>
     )
 }
 

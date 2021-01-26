@@ -48,7 +48,7 @@ const Login = props => {
     return (
         <section className="full-screen">
             <Container>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-center">
                     <Form>
                         <h1>LOGIN</h1>
                         <Form.Group controlId="formGroupEmail">

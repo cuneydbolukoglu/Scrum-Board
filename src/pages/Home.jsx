@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LogoutIcon from '../assets/img/sign-out-alt-solid.svg';
 import { auth } from '../firebase';
-import Tasks from './Tasks';
+import TaskList from './TaskList';
 
 const Home = props => {
     const [user, setUser] = useState('');
@@ -31,7 +31,7 @@ const Home = props => {
                     <button className="button-logout">Logout<img src={LogoutIcon} alt="Logout" /></button>
                 </Link>
             </Row>
-            <Tasks />
+            <TaskList />
         </Container>
     )
 }

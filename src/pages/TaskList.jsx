@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 
-const Tasks = props => {
+const TaskList = props => {
     return (
         <Container>
             <Row>
@@ -18,4 +18,4 @@ const Tasks = props => {
     )
 }
 
-export default Tasks;
+export default TaskList;

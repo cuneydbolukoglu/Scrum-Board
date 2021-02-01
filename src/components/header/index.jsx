@@ -1,13 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Index = props => {
 
+    const location = useLocation();
+    const match = location.pathname === '/login' | location.pathname === '/register'
+
+
+    console.log(match)
+
     return (
-        <header>
-            <Link to="/">
+        match ? <></> : (
+            <header>
                 <div className="logo">Task Board App</div>
-            </Link>
-        </header>
+            </header>
+        )
     )
 }
 

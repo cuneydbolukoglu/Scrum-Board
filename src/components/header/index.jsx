@@ -5,9 +5,6 @@ const Index = props => {
     const location = useLocation();
     const match = location.pathname === '/login' | location.pathname === '/register'
 
-
-    console.log(match)
-
     return (
         match ? <></> : (
             <header>

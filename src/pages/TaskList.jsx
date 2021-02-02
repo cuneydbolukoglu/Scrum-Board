@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const TaskList = props => {
     return (
-        <Container>
+        <Container className="pt-5">
             <Row>
                 <Col>
                     <h6>TODO</h6>

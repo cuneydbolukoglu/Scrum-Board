@@ -6,11 +6,11 @@ const Index = props => {
     const match = location.pathname === '/login' | location.pathname === '/register'
 
     return (
-        match ? <></> : (
+        !match &&
             <header>
                 <div className="logo">Task Board App</div>
             </header>
-        )
+        
     )
 }
 

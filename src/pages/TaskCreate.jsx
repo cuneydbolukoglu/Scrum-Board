@@ -7,8 +7,8 @@ const TaskCreate = props => {
     const [subject, setSubject] = useState(null);
     const [description, setDescription] = useState(null);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => { setShow(false) };
+    const handleShow = () => { setShow(true) };
 
 
     const saveChanges = (e) => {

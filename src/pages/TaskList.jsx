@@ -6,6 +6,7 @@ const TaskList = props => {
             <Row>
                 <Col>
                     <h6>TODO</h6>
+                    <p>{localStorage.getItem(JSON.stringify('data'))}</p>
                 </Col>
             </Row>
         </Container>

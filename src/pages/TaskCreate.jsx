@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { uuidv4 } from '../components/helper';
+import { db } from '../firebase';
 
 const TaskCreate = props => {
     const [show, setShow] = useState(false);
@@ -9,7 +10,6 @@ const TaskCreate = props => {
 
     const handleClose = () => { setShow(false) };
     const handleShow = () => { setShow(true) };
-
 
     const saveChanges = (e) => {
         const data = { id: uuidv4(), subject: subject, description: description };
@@ -50,7 +50,6 @@ const TaskCreate = props => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
         </>
     );
 }

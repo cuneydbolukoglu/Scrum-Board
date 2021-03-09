@@ -11,9 +11,15 @@ const TaskCreate = props => {
     const handleClose = () => { setShow(false) };
     const handleShow = () => { setShow(true) };
 
-    const saveChanges = (e) => {
-        const data = { id: uuidv4(), subject: subject, description: description };
-        localStorage.setItem('data', JSON.stringify(data));
+    const writeUserData = () => {
+
+        var number = Math.random() // 0.9394456857981651
+        var id = number.toString(36).substr(2, 9); // 'xtis06h6'
+
+        db.ref('data/' + id).set({
+            subject: subject,
+            desctiption: description
+        });
     }
 
     return (
@@ -45,7 +51,7 @@ const TaskCreate = props => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={saveChanges}>
+                    <Button variant="primary" onClick={writeUserData}>
                         Save
                     </Button>
                 </Modal.Footer>

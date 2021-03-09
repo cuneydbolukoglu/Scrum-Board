@@ -21,7 +21,13 @@ const TaskList = props => {
             <Row>
                 <Col>
                     <p>{JSON.stringify(data)}</p>
-                        {/* {JSON.parse(data).map(item => {item})} */}
+                    {/* {
+                         data.map((item) => {
+                            return (
+                                <p value={item[0].subject}></p>
+                            )
+                        })
+                    } */}
                 </Col>
             </Row>
         </Container>

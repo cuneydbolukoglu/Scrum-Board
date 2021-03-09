@@ -8,7 +8,7 @@ const Index = props => {
     return (
         !match &&
             <header>
-                <div className="logo">Task Board App</div>
+                <div className="logo">Task Board</div>
             </header>
         
     )

@@ -16,7 +16,8 @@ const TaskCreate = props => {
 
         database.ref('data/' + id).set({
             subject: subject,
-            desctiption: description
+            desctiption: description,
+            status: 'new'
         });
     }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { db } from '../firebase';
+import { database } from '../firebase';
 
 const TaskCreate = props => {
     const [show, setShow] = useState(false);
@@ -10,12 +10,11 @@ const TaskCreate = props => {
     const handleClose = () => { setShow(false) };
     const handleShow = () => { setShow(true) };
 
-    const writeUserData = () => {
-
+    const setData = () => {
         var number = Math.random() // 0.9394456857981651
         var id = number.toString(36).substr(2, 9); // 'xtis06h6'
 
-        db.ref('data/' + id).set({
+        database.ref('data/' + id).set({
             subject: subject,
             desctiption: description
         });
@@ -50,7 +49,7 @@ const TaskCreate = props => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={writeUserData}>
+                    <Button variant="primary" onClick={setData}>
                         Save
                     </Button>
                 </Modal.Footer>

@@ -15,14 +15,14 @@ const Home = props => {
         })
     }
 
-    useEffect(() => {
-        authListener();
-    });
-
     const userLogout = () => {
         auth.signOut();
         localStorage.removeItem("token")
     }
+
+    useEffect(() => {
+        authListener();
+    }, []);
 
     return (
         <Container>

@@ -1,36 +1,41 @@
 import { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { database } from '../firebase';
-import Datalist from './Datalist';
 
 const TaskList = props => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
+
+    const getData = () => {
+        database.ref(`data/`).on('value', snapshot => {
+            // setData([snapshot.val()]);
+
+            snapshot.forEach(snap => {
+                //console.log(snap.val())
+                setData([snap.val()])
+            })
+        });
+    }
 
     useEffect(() => {
-        const getData = () => {
-            database.ref(`data/`).on('value', function (snapshot) {
-                console.log(snapshot.val())
-                setData(snapshot.val())
-            });
-        }
         getData();
     }, []);
 
     return (
-        <Container className="pt-5">
-            <Row>
+            <Row className="pt-5">
                 <Col>
-                    <p>{JSON.stringify(data)}</p>
-                    {/* {
-                         data.map((item) => {
+                    {
+                        data.map((item, index) => {
+                            
                             return (
-                                <p value={item[0].subject}></p>
+                                <>
+                                    <h2 key={index}>{item.subject}</h2>
+                                    <p>{item.description}</p>
+                                </>
                             )
                         })
-                    } */}
+                    }
                 </Col>
             </Row>
-        </Container>
     )
 }
 

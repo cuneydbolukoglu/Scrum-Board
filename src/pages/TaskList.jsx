@@ -11,11 +11,11 @@ const TaskList = props => {
             snapshot.forEach((childSnapshot) => {
                 var childKey = childSnapshot.key;
                 var childData = childSnapshot.val();
+                //setData(snapshot.val());
 
                 console.log(childData);
             });
 
-            //setData(snapshot.val());
             //console.log(snapshot.val());
         });
     }

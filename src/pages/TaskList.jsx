@@ -6,17 +6,15 @@ const TaskList = props => {
     const [data, setData] = useState([]);
 
     const getData = () => {
+
         database.ref(`data/`).on('value', snapshot => {
+            const snapshotObject = snapshot.val();
 
-            snapshot.forEach((childSnapshot) => {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                //setData(snapshot.val());
+            const snapshotData = Object.keys(snapshotObject).map(key => ({
+                ...snapshotObject[key],
+            }));
 
-                console.log(childData);
-            });
-
-            //console.log(snapshot.val());
+            setData(snapshotData)
         });
     }
 
@@ -27,11 +25,14 @@ const TaskList = props => {
     return (
         <Row className="pt-5">
             <Col>
-                <div>{data.map((item, index) =>
-                    <div key={index}>
-                        {item.subject}
-                    </div>)}
-                </div>
+                {
+                    data.map((item) =>
+                        <>
+                            <b>{item.subject}</b>
+                            <p>{item.description}</p>
+                        </>
+                    )
+                }
             </Col>
         </Row>
     )

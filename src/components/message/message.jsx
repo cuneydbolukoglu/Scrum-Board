@@ -3,11 +3,13 @@ const LOGIN_SUCCESS = "You have successfully logged in";
 const NULL_USERNAME = "Enter Username";
 const NULL_PASSWORD = "Enter Password";
 const MATCH_PASWORD = "Password does not match";
+const MATCHED_PASSWORD = "Passwords matched";
 
 export {
     USER_CREATE,
     LOGIN_SUCCESS,
     NULL_USERNAME,
     NULL_PASSWORD,
-    MATCH_PASWORD
+    MATCH_PASWORD,
+    MATCHED_PASSWORD
 };

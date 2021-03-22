@@ -37,6 +37,7 @@ const Index = props => {
             >
                 <Dropdown.Item>Profile</Dropdown.Item>
                 <Dropdown.Item>Settings</Dropdown.Item>
+                <Dropdown.Item>Change password</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={userLogout}>Log out <img className="logoutIcon" src={LogoutIcon} alt="Logout" /></Dropdown.Item>
             </DropdownButton>

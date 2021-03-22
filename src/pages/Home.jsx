@@ -5,7 +5,7 @@ import TaskList from './TaskList';
 const Home = props => {
 
     return (
-        <Container>
+        <Container className="pt-3">
             <TaskCreate />
             <TaskList />
         </Container>

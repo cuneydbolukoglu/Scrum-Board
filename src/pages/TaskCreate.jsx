@@ -28,7 +28,7 @@ const TaskCreate = props => {
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crate Task</Modal.Title>
+                    <Modal.Title>Create Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group>

@@ -22,7 +22,7 @@ const ChangePassword = props => {
         
         var user = auth.currentUser;
         //var newPassword = getASecureRandomPassword();
-        console.log(user)
+
         user.updatePassword(newPassword).then(function () {
             // Update successful.
         }).catch(function (error) {

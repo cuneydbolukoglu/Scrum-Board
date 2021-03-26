@@ -79,6 +79,7 @@ const Register = props => {
                             onClick={onButtonClick}
                             variant="dark"
                             block
+                            type="submit"
                         >Sign Up</Button>
                         <ErrorMessage message={errorMessage} result={errorResult} />
                         <Link to='/'>

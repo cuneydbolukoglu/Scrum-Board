@@ -16,7 +16,7 @@ const Login = props => {
 
     const onButtonClick = e => {
         e.preventDefault();
-
+        
         if (!email) {
             setErrorMessage(NULL_USERNAME);
         } else if (!password) {
@@ -67,6 +67,7 @@ const Login = props => {
                             onClick={onButtonClick}
                             variant="dark"
                             block
+                            type="submit"
                         >Login</Button>
                         <ErrorMessage message={errorMessage} result={errorResult} />
                         <Link to='/register'>

@@ -26,11 +26,11 @@ const TaskList = props => {
         <Row className="pt-5">
             <Col>
                 {
-                    data.map((item) =>
-                        <>
+                    data.map((item, index) =>
+                        <div key={index}>
                             <b>{item.subject}</b>
                             <p>{item.description}</p>
-                        </>
+                        </div>
                     )
                 }
             </Col>

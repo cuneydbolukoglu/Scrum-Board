@@ -12,6 +12,7 @@ const Register = props => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
     const [repeatPassword, setRepeatPassword] = useState(null);
+    const [name, setName] = useState(null);
 
     const history = useHistory();
 
@@ -31,6 +32,8 @@ const Register = props => {
                     console.log("response: ", res);
                     console.log("response: ", res.message);
 
+                    updateUserName(res.displayName);
+
                     if (res.operationType === "signIn") {
                         setErrorMessage(USER_CREATE);
                         setErrorResult(true);
@@ -48,6 +51,13 @@ const Register = props => {
                     setErrorMessage(err.message);
                     setErrorResult(false);
                 })
+
+            const updateUserName = (user) => {
+                auth.currentUser.updateProfile({ displayName: name }).then(() => {
+                    console.log('Kullanıcının ismi başarıyla değiştirildi!')
+                }).catch((error) => setErrorMessage(error));
+            }
+
         }
     }
 
@@ -57,6 +67,12 @@ const Register = props => {
                 <Row className="justify-content-center">
                     <Form>
                         <h1>New Account</h1>
+                        <Form.Group controlId="formGroupEmail">
+                            <Form.Control
+                                type="text"
+                                placeholder="Display Name"
+                                onChange={(e) => setName(e.target.value)} />
+                        </Form.Group>
                         <Form.Group controlId="formGroupEmail">
                             <Form.Control
                                 type="email"

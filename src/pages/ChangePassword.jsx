@@ -52,7 +52,7 @@ const ChangePassword = props => {
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
                         <Form.Label>New Password</Form.Label>
-                        <Form.Control style={{ witdh: '200px' }} type="password" placeholder="New Password" onChange={(e) => setNewPassword(e.target.value)} />
+                        <Form.Control type="password" placeholder="New Password" onChange={(e) => setNewPassword(e.target.value)} />
                     </Form.Group>
                     <Button variant="primary" type="submit" onClick={onChangePasswordPress}>
                         Change Password

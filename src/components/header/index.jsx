@@ -15,7 +15,7 @@ const Index = props => {
 
     const authListener = () => {
         auth.onAuthStateChanged((user) => {
-            user ? setUser(user.email) : setUser("")
+            user.displayName ? setUser(user.displayName) : setUser(user.email)
         })
     }
 

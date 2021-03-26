@@ -1,0 +1,26 @@
+.issue{
+    background-color: #ffffff;
+
+    .col-bg{
+        background-color: #f4f5f7;
+        margin: 0 7px;
+    }
+
+    .issue-box{
+        padding: 8px;
+        margin: 5px;
+        transition: 0.2s;
+    }
+
+    .todo{
+        background-color: #fee4cb;
+    }
+
+    .in-progress{
+        background-color: #c3cbff;
+    }
+
+    .done{
+        background-color: #d4f5cb;
+    }
+}

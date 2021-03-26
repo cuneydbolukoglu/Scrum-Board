@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
-import TaskCreate from './TaskCreate';
-import TaskList from './TaskList';
+import TaskCreate from '../components/TaskCreate';
+import TaskList from '../components/TaskList';
 
 const Home = props => {
 

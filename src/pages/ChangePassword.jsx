@@ -1,52 +1,65 @@
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
 import { auth } from '../firebase';
+import firebase from 'firebase';
 import ErrorMessage from '../components/error-message';
-import { MATCH_PASWORD, MATCHED_PASSWORD } from '../components/message/message';
+import { NEW_PASSWORD } from '../components/message/message';
+import md5 from 'md5';
 
 const ChangePassword = props => {
-    const [oldPassword, setOldPassword] = useState(null);
+    const [currentPassword, setCurrentPassword] = useState(null);
     const [newPassword, setNewPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
 
-    const onButtonClick = e => {
-        e.preventDefault();
-        if (oldPassword) {
-            setErrorMessage(MATCHED_PASSWORD);
-            setErrorResult(true);
-        } else {
-            setErrorMessage(MATCH_PASWORD);
-            setErrorResult(false);      
-        }
-        
-        var user = auth.currentUser;
-        //var newPassword = getASecureRandomPassword();
+    const haslogin = localStorage.getItem("token");
 
-        user.updatePassword(newPassword).then(function () {
-            // Update successful.
-        }).catch(function (error) {
-            // An error happened.
+    const onChangePasswordPress = e => {
+        e.preventDefault();
+
+        const reauthenticate = (currentPassword) => {
+            var user = auth.currentUser;
+            var cred = firebase.auth.EmailAuthProvider.credential(user.email, md5(currentPassword));
+            console.log("user", cred);
+
+            return user.reauthenticateWithCredential(cred);
+        }
+
+        reauthenticate(currentPassword).then(() => {
+            var user = auth.currentUser;
+
+            user.updatePassword(md5(newPassword)).then(() => {
+                setErrorResult(true);
+                setErrorMessage(NEW_PASSWORD)
+            }).catch((error) => {
+                setErrorMessage(error.message);
+                setErrorResult(false);
+            });
+        }).catch((error) => {
+            setErrorMessage(error.message);
+            setErrorResult(false);
         });
     }
 
     return (
-        <Container className="fluid" md={4}>
-            <Form className="justify-content-md-center pt-5">
-                <Form.Group controlId="formGroupEmail">
-                    <Form.Label>Old Password</Form.Label>
-                    <Form.Control type="password" placeholder="Old Password" onChange={(e) => setOldPassword(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="formGroupPassword">
-                    <Form.Label>New Password</Form.Label>
-                    <Form.Control type="password" placeholder="New Password" onChange={(e) => setNewPassword(e.target.value)} />
-                </Form.Group>
-                <Button variant="primary" type="submit" onClick={onButtonClick}>
-                    Change Password
+        haslogin ?
+            <Container className="fluid">
+                <Form className="justify-content-md-center pt-5">
+                    <Form.Group controlId="formGroupEmail">
+                        <Form.Label>Current Password</Form.Label>
+                        <Form.Control style={{ witdh: '200px' }} type="password" placeholder="Current Password" onChange={(e) => setCurrentPassword(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword">
+                        <Form.Label>New Password</Form.Label>
+                        <Form.Control style={{ witdh: '200px' }} type="password" placeholder="New Password" onChange={(e) => setNewPassword(e.target.value)} />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" onClick={onChangePasswordPress}>
+                        Change Password
                 </Button>
-                <ErrorMessage message={errorMessage} result={errorResult} />
-            </Form>
-        </Container>
+                    <ErrorMessage message={errorMessage} result={errorResult} />
+                </Form>
+            </Container> : <Redirect to="/login" />
     )
 }
 

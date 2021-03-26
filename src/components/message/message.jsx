@@ -4,6 +4,7 @@ const NULL_USERNAME = "Enter Username";
 const NULL_PASSWORD = "Enter Password";
 const MATCH_PASWORD = "Password does not match";
 const MATCHED_PASSWORD = "Passwords matched";
+const NEW_PASSWORD = "New password changed";
 
 export {
     USER_CREATE,
@@ -11,5 +12,6 @@ export {
     NULL_USERNAME,
     NULL_PASSWORD,
     MATCH_PASWORD,
-    MATCHED_PASSWORD
+    MATCHED_PASSWORD,
+    NEW_PASSWORD
 };

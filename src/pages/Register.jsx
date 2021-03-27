@@ -32,7 +32,7 @@ const Register = props => {
                     console.log("response: ", res);
                     console.log("response: ", res.message);
 
-                    updateUserName(res.displayName);
+                    updateUserName();
 
                     if (res.operationType === "signIn") {
                         setErrorMessage(USER_CREATE);

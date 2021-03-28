@@ -67,7 +67,7 @@ const Register = props => {
                 <Row className="justify-content-center">
                     <Form>
                         <h1>New Account</h1>
-                        <Form.Group controlId="formGroupEmail">
+                        <Form.Group controlId="formGroupText">
                             <Form.Control
                                 type="text"
                                 placeholder="Display Name"

@@ -26,8 +26,8 @@ const Index = props => {
         localStorage.removeItem("token");
     }
 
-    const changePassword = () => {
-        history.push("/changepassword");
+    const settings = () => {
+        history.push("/settings");
     }
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const Index = props => {
             <Link to="/"><div className="logo">Task Board</div></Link>
             <NavDropdown className="white" title={user}>
                 <NavDropdown.Item>{user}</NavDropdown.Item>
-                <NavDropdown.Item onClick={changePassword}>Change password</NavDropdown.Item>
+                <NavDropdown.Item onClick={settings}>Settings</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={userLogout}>Log out <img className="logoutIcon" src={LogoutIcon} alt="Logout" /></NavDropdown.Item>
             </NavDropdown>

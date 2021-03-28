@@ -30,7 +30,7 @@ const TaskList = props => {
                     <h6>TODO {data.filter(item => item.status === "new").length}</h6>
                     {
                         data.filter(item => item.status === "new").map((item, index) =>
-                            <div key={index} className="issue-box todo">
+                            <div key={index} className="issue-box todo" onClick={() => console.log(item.subject + item.description)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
                             </div>

@@ -36,16 +36,15 @@ const Index = props => {
 
     return (
         !match &&
-        <header>
-            <Link to="/"><div className="logo">Task Board</div></Link>
-            <NavDropdown className="white" title={user}>
-                <NavDropdown.Item>{user}</NavDropdown.Item>
-                <NavDropdown.Item onClick={settings}>Settings</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={userLogout}>Log out <img className="logoutIcon" src={LogoutIcon} alt="Logout" /></NavDropdown.Item>
-            </NavDropdown>
-        </header>
-
+            <header>
+                <Link to="/"><div className="logo">Task Board</div></Link>
+                <NavDropdown className="white" title={user}>
+                    <NavDropdown.Item>{user}</NavDropdown.Item>
+                    <NavDropdown.Item onClick={settings}>Settings</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={userLogout}>Log out <img className="logoutIcon" src={LogoutIcon} alt="Logout" /></NavDropdown.Item>
+                </NavDropdown>
+            </header>
     )
 }
 

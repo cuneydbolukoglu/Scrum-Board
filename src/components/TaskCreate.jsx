@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Container, Button, Modal, Form } from "react-bootstrap";
-import { database } from '../firebase';
+import { database, auth } from '../firebase';
 import TaskList from "./TaskList";
 
 const TaskCreate = props => {
     const [show, setShow] = useState(false);
     const [subject, setSubject] = useState(null);
     const [description, setDescription] = useState(null);
+    const [createUser, setCreateUser] = useState(null);
 
     const handleClose = () => { setShow(false) };
     const handleShow = () => { setShow(true) };
@@ -15,10 +16,21 @@ const TaskCreate = props => {
         var number = Math.random() // 0.9394456857981651
         var id = number.toString(36).substr(2, 9); // 'xtis06h6'
 
+        const authListener = () => {
+            auth.onAuthStateChanged((user) => {
+                setCreateUser(user.email)
+            })
+        }
+
+        authListener();
+
         database.ref('data/' + id).set({
+            createDate: Date.now(),
             subject: subject,
             description: description,
-            status: 'new'
+            status: 'new',
+            createUser: createUser,
+            assignedUser: createUser
         });
     }
 
@@ -27,6 +39,7 @@ const TaskCreate = props => {
             <Button variant="primary" onClick={handleShow}>
                 Create
             </Button>
+            <h3 className="pt-3">My Board</h3>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
                     <Modal.Title>Create issue</Modal.Title>

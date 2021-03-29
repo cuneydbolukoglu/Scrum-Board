@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom';
-import TaskCreate from '../components/TaskCreateModal';
+import TaskCreate from '../components/TaskCreate';
 
 const Private = props => {
     const haslogin = localStorage.getItem("token");

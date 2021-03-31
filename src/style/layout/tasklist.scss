@@ -1,8 +1,10 @@
 .issue{
-    background-color: #ffffff;
+    background-color: #fff;
 
     .col-bg{
-        background-color: #f4f5f7;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
         margin: 0 7px;
     }
 
@@ -10,6 +12,11 @@
         padding: 8px;
         margin: 5px;
         transition: 0.2s;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+        cursor: pointer;
     }
 
     .todo{

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Modal, Form } from "react-bootstrap";
 
 const IssueModal = props => {
     const [subject, setSubject] = useState(null);
     const [description, setDescription] = useState(null);
 
-    console.log("task", subject + description);
+    // if (props.data) {
+    //     setSubject(props.data.subject)
+    // }
+    console.log(props.data)
 
     return (
         <Modal show={props.onShow} onHide={() => props.onHide()}>
@@ -18,7 +21,7 @@ const IssueModal = props => {
                     <Form.Label>Subject</Form.Label>
                     <Form.Control
                         type="text"
-                        //defaultValue={props.data.subject ? props.data.subject : 'null'}
+                        defaultValue={subject}
                         onChange={(e) => setSubject(e.target.value)}
                     />
                 </Form.Group>
@@ -26,7 +29,7 @@ const IssueModal = props => {
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                         as="textarea"
-                        //defaultValue={props.data.description ? props.data.description : 'null'}
+                        defaultValue={description}
                         onChange={(e) => setDescription(e.target.value)}
                         rows={8} />
                 </Form.Group>

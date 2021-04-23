@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
 import { auth } from '../firebase';
 import firebase from 'firebase';
@@ -7,12 +7,13 @@ import ErrorMessage from '../components/error-message';
 import { NEW_PASSWORD } from '../components/message/message';
 import md5 from 'md5';
 
-const Settings = props => {
+const ChangePassword = props => {
     const [currentPassword, setCurrentPassword] = useState(null);
     const [newPassword, setNewPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
-    const [name, setName] = useState(null);
+
+    const history = useHistory();
 
     const haslogin = localStorage.getItem("token");
 
@@ -43,33 +44,14 @@ const Settings = props => {
         });
     }
 
-    const updateUserName = (user) => {
-        auth.currentUser.updateProfile({ displayName: name }).then(() => {
-            console.log('Kullanıcının ismi başarıyla değiştirildi!')
-        }).catch((error) => setErrorMessage(error));
+    const cancel = () => {
+        history.push("/");
     }
-
-    const authListener = () => {
-        auth.onAuthStateChanged((user) => {
-            user.displayName ? setName(user.displayName) : setName('')
-        })
-    }
-
-    useEffect(() => {
-        authListener();
-    }, []);
 
     return (
         haslogin ?
             <Container className="fluid">
                 <Form className="justify-content-md-center pt-5">
-                    <Form.Group controlId="formGroupText">
-                        <Form.Label>Your Full Name</Form.Label>
-                        <Form.Control type="text" placeholder="Your Full Name" defaultValue={name} onChange={(e) => setName(e.target.value)} />
-                    </Form.Group>
-                    <Button variant="primary" type="submit" onClick={updateUserName}>
-                        Change Display Name
-                    </Button>
                     <Form.Group controlId="formGroupEmail">
                         <Form.Label>Current Password</Form.Label>
                         <Form.Control style={{ witdh: '200px' }} type="password" placeholder="Current Password" onChange={(e) => setCurrentPassword(e.target.value)} />
@@ -81,10 +63,13 @@ const Settings = props => {
                     <Button variant="primary" type="submit" onClick={onChangePasswordPress}>
                         Change Password
                     </Button>
+                    <Button variant="light" type="submit" onClick={cancel}>
+                        Cancel
+                    </Button>
                     <ErrorMessage message={errorMessage} result={errorResult} />
                 </Form>
             </Container> : <Redirect to="/login" />
     )
 }
 
-export default Settings;
+export default ChangePassword;

@@ -30,7 +30,8 @@ const TaskCreate = props => {
             description: description,
             status: 'new',
             createUser: createUser,
-            assignedUser: createUser
+            assignedUser: createUser,
+            id: id
         });
     }
 
@@ -61,7 +62,10 @@ const TaskCreate = props => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={setData || handleClose}>
+                    <Button
+                        variant="primary"
+                        onClick={setData || handleClose}
+                        type="submit">
                         Save
                     </Button>
                     <Button variant="light" onClick={handleClose}>

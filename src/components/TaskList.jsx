@@ -32,7 +32,7 @@ const TaskList = props => {
                     <h6>TODO {data.filter(item => item.status === "new").length}</h6>
                     {
                         data.filter(item => item.status === "new").map((item, index) =>
-                            <div key={index} className="issue-box todo" onClick={() => setLoginModalShow(true) || setIssueShow(item)}>
+                            <div key={index} className="issue-box todo" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
                                 <b>{item.assignedUser}</b>
@@ -44,7 +44,7 @@ const TaskList = props => {
                     <h6>IN PROGRESS {data.filter(item => item.status === "in-progress").length}</h6>
                     {
                         data.filter(item => item.status === "in-progress").map((item, index) =>
-                            <div key={index} className="issue-box in-progress" onClick={() => setLoginModalShow(true) || setIssueShow(item)}>
+                            <div key={index} className="issue-box in-progress" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
                                 <b>{item.assignedUser}</b>
@@ -56,7 +56,7 @@ const TaskList = props => {
                     <h6>DONE {data.filter(item => item.status === "done").length}</h6>
                     {
                         data.filter(item => item.status === "done").map((item, index) =>
-                            <div key={index} className="issue-box done" onClick={() => setLoginModalShow(true) || setIssueShow(item)}>
+                            <div key={index} className="issue-box done" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
                                 <b>{item.assignedUser}</b>

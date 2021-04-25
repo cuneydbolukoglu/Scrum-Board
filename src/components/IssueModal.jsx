@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Modal, Form } from "react-bootstrap";
 
 const IssueModal = props => {
     const [subject, setSubject] = useState(null);
     const [description, setDescription] = useState(null);
 
-    // if (props.data) {
-    //     setSubject(props.data.subject)
-    // }
-    console.log(props.data)
+    useEffect(() => {
+        setSubject(props.data ? props.data.subject : '')
+        setDescription(props.data ? props.data.description : '')
+    }, [props.data]);
 
     return (
         <Modal show={props.onShow} onHide={() => props.onHide()}>

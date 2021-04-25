@@ -35,7 +35,7 @@ const TaskList = props => {
                             <div key={index} className="issue-box todo" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b>{item.assignedUser}</b>
+                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
                             </div>
                         )
                     }
@@ -47,7 +47,7 @@ const TaskList = props => {
                             <div key={index} className="issue-box in-progress" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b>{item.assignedUser}</b>
+                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
                             </div>
                         )
                     }
@@ -59,7 +59,7 @@ const TaskList = props => {
                             <div key={index} className="issue-box done" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b>{item.assignedUser}</b>
+                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
                             </div>
                         )
                     }

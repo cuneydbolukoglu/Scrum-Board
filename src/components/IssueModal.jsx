@@ -14,10 +14,7 @@ const IssueModal = props => {
     }
 
     const updateIssue = () => {
-        console.log(subject || description);
-        console.log(props.data)
 
-        
         database.ref('data/' + props.data.id).set({
             subject: subject,
             description: description,

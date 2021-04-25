@@ -5,16 +5,20 @@ const IssueModal = props => {
     const [subject, setSubject] = useState(null);
     const [description, setDescription] = useState(null);
 
+    const clear = () => {
+        setSubject('')
+        setDescription('')
+    }
+
     useEffect(() => {
         setSubject(props.data ? props.data.subject : '')
         setDescription(props.data ? props.data.description : '')
     }, [props.data]);
 
     return (
-        <Modal show={props.onShow} onHide={() => props.onHide()}>
+        <Modal show={props.onShow} onHide={() => props.onHide()} size="lg">
             <Modal.Header>
                 <Modal.Title>issue</Modal.Title>
-
             </Modal.Header>
             <Modal.Body>
                 <Form.Group>
@@ -38,7 +42,7 @@ const IssueModal = props => {
                 <Button variant="primary" onClick={props.show}>
                     Save
             </Button>
-                <Button variant="light" onClick={props.onHide}>
+                <Button variant="light" onClick={props.onHide || clear}>
                     Cancel
             </Button>
             </Modal.Footer>

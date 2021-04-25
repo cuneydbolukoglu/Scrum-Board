@@ -40,7 +40,7 @@ const TaskCreate = props => {
                 Create
             </Button>
             <h3 className="pt-3">My Board</h3>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header>
                     <Modal.Title>Create issue</Modal.Title>
                 </Modal.Header>

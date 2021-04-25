@@ -10,7 +10,7 @@ const TaskList = props => {
 
     const getData = () => {
 
-        null && database.ref(`data/`).on('value', snapshot => {
+        database.ref(`data/`).on('value', snapshot => {
             const snapshotObject = snapshot.val();
 
             const snapshotData = Object.keys(snapshotObject).map(key => ({

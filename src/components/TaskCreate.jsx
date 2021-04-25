@@ -61,7 +61,7 @@ const TaskCreate = props => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={setData}>
+                    <Button variant="primary" onClick={setData || handleClose}>
                         Save
                     </Button>
                     <Button variant="light" onClick={handleClose}>

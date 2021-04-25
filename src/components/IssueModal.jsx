@@ -7,14 +7,27 @@ const IssueModal = props => {
     const [description, setDescription] = useState(null);
     const [assignedUser, setAssignedUser] = useState(null);
 
-    const clear = () => {
-        setSubject('')
-        setDescription('')
-    }
-
     const deleteIssue = () => {
         let issueRef = database.ref('data/' + props.data.id);
         issueRef.remove();
+        props.onHide();
+    }
+
+    const updateIssue = () => {
+        console.log(subject || description);
+        console.log(props.data)
+
+        
+        database.ref('data/' + props.data.id).set({
+            subject: subject,
+            description: description,
+            createDate: props.data.createDate,
+            status: props.data.status,
+            createUser: props.data.createUser,
+            assignedUser: props.data.createUser,
+            id: props.data.id
+        });
+
         props.onHide();
     }
 
@@ -22,9 +35,6 @@ const IssueModal = props => {
         setSubject(props.data ? props.data.subject : '')
         setDescription(props.data ? props.data.description : '')
         setAssignedUser(props.data ? props.data.assignedUser : '')
-
-        console.log(props.data)
-
     }, [props.data]);
 
     return (
@@ -58,10 +68,10 @@ const IssueModal = props => {
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.show}>
+                <Button variant="primary" onClick={updateIssue}>
                     Save
             </Button>
-                <Button variant="light" onClick={props.onHide || clear}>
+                <Button variant="light" onClick={props.onHide}>
                     Cancel
             </Button>
             </Modal.Footer>

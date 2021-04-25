@@ -33,6 +33,8 @@ const TaskCreate = props => {
             assignedUser: createUser,
             id: id
         });
+
+        handleClose();
     }
 
     return (
@@ -64,7 +66,7 @@ const TaskCreate = props => {
                 <Modal.Footer>
                     <Button
                         variant="primary"
-                        onClick={setData || handleClose}
+                        onClick={setData}
                         type="submit">
                         Save
                     </Button>

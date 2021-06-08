@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { LOGIN_SUCCESS, NULL_PASSWORD, NULL_USERNAME } from '../components/message/message';
 import ErrorMessage from '../components/error-message';
-import { Container, Row, Button, Form } from 'react-bootstrap';
 import { auth } from '../firebase';
 import md5 from 'md5';
+import { Form, Input, Button, Checkbox } from 'antd';
 
 const Login = props => {
     const [email, setEmail] = useState(null);
@@ -16,7 +16,7 @@ const Login = props => {
 
     const onButtonClick = e => {
         e.preventDefault();
-        
+
         if (!email) {
             setErrorMessage(NULL_USERNAME);
         } else if (!password) {
@@ -45,39 +45,93 @@ const Login = props => {
         }
     }
 
+    const layout = {
+        labelCol: {
+            span: 8,
+        },
+        wrapperCol: {
+            span: 16,
+        },
+    };
+    const tailLayout = {
+        wrapperCol: {
+            offset: 8,
+            span: 16,
+        },
+    };
+
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+
     return (
         <section className="full-screen">
-            <Container>
-                <Row className="justify-content-center">
-                    <Form>
-                        <h1>LOGIN</h1>
-                        <Form.Group controlId="formGroupEmail">
-                            <Form.Control
-                                type="email"
-                                placeholder="Email"
-                                onChange={(e) => setEmail(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group controlId="formGroupPassword">
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                onChange={(e) => setPassword(e.target.value)} />
-                        </Form.Group>
+            <Form
+                {...layout}
+                name="basic"
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+            >
+                <h1>LOGIN</h1>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Email!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                    <Checkbox>Remember me</Checkbox>
+                </Form.Item>
+
+                <Form.Item {...tailLayout}>
+                    <Button
+                        onClick={onButtonClick}
+                        type="submit"
+                        htmlType="submit">
+                        Login
+                    </Button>
+                    <ErrorMessage message={errorMessage} result={errorResult} />
+                    <Link to='/register'>
                         <Button
-                            onClick={onButtonClick}
-                            variant="dark"
+                            type="primary"
                             block
-                            type="submit"
-                        >Login</Button>
-                        <ErrorMessage message={errorMessage} result={errorResult} />
-                        <Link to='/register'>
-                            <Button variant="light" block>Create an Account</Button>
-                        </Link>
-                    </Form>
-                </Row>
-            </Container>
+                        >Create an Account</Button>
+                    </Link>
+                </Form.Item>
+
+            </Form>
         </section>
-    )
-}
+    );
+};
 
 export default Login;

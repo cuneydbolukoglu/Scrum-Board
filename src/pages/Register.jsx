@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import ErrorMessage from '../components/error-message';
 import { MATCH_PASWORD, NULL_PASSWORD, NULL_USERNAME, USER_CREATE } from '../components/message/message';
-import { Container, Row, Button, Form } from 'react-bootstrap';
 import { auth } from '../firebase';
 import md5 from 'md5';
+import { Form, Input, Button, Checkbox } from 'antd';
 
 const Register = props => {
     const [email, setEmail] = useState(null);
@@ -61,51 +61,122 @@ const Register = props => {
         }
     }
 
+    const layout = {
+        labelCol: {
+            span: 8,
+        },
+        wrapperCol: {
+            span: 16,
+        },
+    };
+    const tailLayout = {
+        wrapperCol: {
+            offset: 8,
+            span: 16,
+        },
+    };
+
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+
     return (
         <section className="full-screen">
-            <Container>
-                <Row className="justify-content-center">
-                    <Form>
-                        <h1>New Account</h1>
-                        <Form.Group controlId="formGroupText">
-                            <Form.Control
-                                type="text"
-                                placeholder="Display Name"
-                                onChange={(e) => setName(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group controlId="formGroupEmail">
-                            <Form.Control
-                                type="email"
-                                placeholder="Email"
-                                onChange={(e) => setEmail(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group controlId="formGroupPassword">
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                onChange={(e) => setPassword(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group controlId="formGroupPasswordMatch">
-                            <Form.Control
-                                type="password"
-                                placeholder="Password Match"
-                                onChange={(e) => setRepeatPassword(e.target.value)} />
-                        </Form.Group>
+            <Form
+                {...layout}
+                name="basic"
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+            >
+                <h1>REGISTER</h1>
+
+                <Form.Item
+                    label="Display Name"
+                    name="displayname"
+                    onChange={(e) => setName(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Display Name!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Email!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                    label="Password Match"
+                    name="passwordmatch"
+                    onChange={(e) => setRepeatPassword(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password Match!',
+                        },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                    <Checkbox>Remember me</Checkbox>
+                </Form.Item>
+
+                <Form.Item {...tailLayout}>
+                    <Button
+                        onClick={onButtonClick}
+                        type="submit"
+                        htmlType="submit">
+                        Sign up
+                    </Button>
+                    <ErrorMessage message={errorMessage} result={errorResult} />
+                    <Link to='/login'>
                         <Button
-                            onClick={onButtonClick}
-                            variant="dark"
+                            type="primary"
                             block
-                            type="submit"
-                        >Sign Up</Button>
-                        <ErrorMessage message={errorMessage} result={errorResult} />
-                        <Link to='/'>
-                            <Button variant="light" block>Login</Button>
-                        </Link>
-                    </Form>
-                </Row>
-            </Container>
+                        >Login</Button>
+                    </Link>
+                </Form.Item>
+
+            </Form>
         </section>
-    )
-}
+    );
+};
 
 export default Register;

@@ -14,26 +14,21 @@ header {
         height: 100%;
         top: 0;
         left: 0;
-        background-color: #20232a;
+        // background-color: #001529;
         z-index: -1;
     }
-
-    .logo{
-        font-size: 20px;
-        color: #ffffff;
-    }
-
+    
     .logoutIcon {
         max-width: 15px;
     }
 
-    a {
-        color: white;
-        text-decoration: none;
+    // a {
+    //     color: white;
+    //     text-decoration: none;
     
-        &:hover {
-            color: white;
-            text-decoration: none;
-        }
-    }
+    //     &:hover {
+    //         color: white;
+    //         text-decoration: none;
+    //     }
+    // }
 }

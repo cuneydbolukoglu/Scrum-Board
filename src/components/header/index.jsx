@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { NavDropdown } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { Dropdown, Layout, Menu } from 'antd';
 import { auth } from '../../firebase';
-import LogoutIcon from '../../assets/img/sign-out-alt-solid.svg';
+import {
+    UserOutlined,
+    LogoutOutlined,
+} from '@ant-design/icons';
 
 const Index = props => {
     const [user, setUser] = useState('');
-
-    const history = useHistory();
-
-    const location = useLocation();
-    const match = location.pathname === '/login' | location.pathname === '/register'
+    const { Header } = Layout;
 
     const authListener = () => {
         auth.onAuthStateChanged((user) => {
@@ -19,37 +17,44 @@ const Index = props => {
         })
     }
 
-    const userLogout = () => {
-        window.location.reload();
-        auth.signOut();
-        history.push("/");
-        localStorage.removeItem("token");
-    }
-
-    const profile = () => {
-        history.push("/profile");
-    }
-
-    const changePassword = () => {
-        history.push("/change-password");
-    }
-    
     useEffect(() => {
         authListener();
     }, []);
 
+    const onLogout = () => {
+        window.location.reload();
+        auth.signOut();
+        localStorage.removeItem("token");
+    }
+
+    const location = useLocation();
+    const match = location.pathname === '/login' | location.pathname === '/register'
+
+
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <Link to="/profile">Profile</Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to="/change-password">Change Password</Link>
+            </Menu.Item>
+            <Menu.Item icon={<LogoutOutlined />} danger onClick={onLogout}>Log out</Menu.Item>
+        </Menu>
+    );
+
     return (
         !match &&
-            <header>
-                <Link to="/"><div className="logo">Task Board</div></Link>
-                <NavDropdown className="white" title={user}>
-                    <NavDropdown.Item>{user}</NavDropdown.Item>
-                    <NavDropdown.Item onClick={profile}>Profile</NavDropdown.Item>
-                    <NavDropdown.Item onClick={changePassword}>Change Password</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={userLogout}>Log out <img className="logoutIcon" src={LogoutIcon} alt="Logout" /></NavDropdown.Item>
-                </NavDropdown>
-            </header>
+        <Header
+            className="site-layout-background"
+            style={{ padding: '10px' }}>
+            <h4> </h4>
+            <Dropdown overlay={menu}>
+                <Link className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                    <UserOutlined /> {user}
+                </Link>
+            </Dropdown>
+        </Header>
     )
 }
 

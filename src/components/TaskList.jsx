@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { database } from '../firebase';
-import IssueModal from "./IssueModal";
+import CrudModal from "./CrudModal/";
+import { Avatar } from 'antd';
 
 const TaskList = props => {
     const [data, setData] = useState([]);
-    const [loginModalShow, setLoginModalShow] = useState(false);
+    const [crudModalOnOpen, setCrudModalOnOpen] = useState(false);
     const [issueShow, setIssueShow] = useState(null);
 
     const getData = () => {
@@ -32,10 +33,10 @@ const TaskList = props => {
                     <h6>TODO {data.filter(item => item.status === "new").length}</h6>
                     {
                         data.filter(item => item.status === "new").map((item, index) =>
-                            <div key={index} className="issue-box todo" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
+                            <div key={index} className="issue-box todo" onClick={() => setIssueShow(item) || setCrudModalOnOpen(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
+                                <Avatar>{item.assignedUser && item.assignedUser.charAt(0)}</Avatar>
                             </div>
                         )
                     }
@@ -44,10 +45,10 @@ const TaskList = props => {
                     <h6>IN PROGRESS {data.filter(item => item.status === "in-progress").length}</h6>
                     {
                         data.filter(item => item.status === "in-progress").map((item, index) =>
-                            <div key={index} className="issue-box in-progress" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
+                            <div key={index} className="issue-box in-progress" onClick={() => setIssueShow(item) || setCrudModalOnOpen(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
+                                <Avatar>{item.assignedUser && item.assignedUser.charAt(0)}</Avatar>
                             </div>
                         )
                     }
@@ -56,16 +57,20 @@ const TaskList = props => {
                     <h6>DONE {data.filter(item => item.status === "done").length}</h6>
                     {
                         data.filter(item => item.status === "done").map((item, index) =>
-                            <div key={index} className="issue-box done" onClick={() => setIssueShow(item) || setLoginModalShow(true)}>
+                            <div key={index} className="issue-box done" onClick={() => setIssueShow(item) || setCrudModalOnOpen(true)}>
                                 <b>{item.subject}</b>
                                 <p>{item.description}</p>
-                                <b className="assigned-user">{item.assignedUser && item.assignedUser.charAt(0)}</b>
+                                <Avatar>{item.assignedUser && item.assignedUser.charAt(0)}</Avatar>
                             </div>
                         )
                     }
                 </Col>
             </Row>
-            <IssueModal onShow={loginModalShow} onHide={() => setLoginModalShow(false)} data={issueShow} />
+            <CrudModal
+                onShow={crudModalOnOpen}
+                onHide={() => setCrudModalOnOpen(false)}
+                data={issueShow}
+            />
         </>
     )
 }

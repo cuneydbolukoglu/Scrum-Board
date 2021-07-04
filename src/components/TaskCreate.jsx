@@ -1,82 +1,22 @@
 import { useState } from "react";
-import { Container, Button, Modal, Form } from "react-bootstrap";
+import { Button } from "antd";
 import { database, auth } from '../firebase';
-import TaskList from "./TaskList";
+import CrudModal from '../components/CrudModal';
+
 
 const TaskCreate = props => {
-    const [show, setShow] = useState(false);
-    const [subject, setSubject] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [createUser, setCreateUser] = useState(null);
-
-    const handleClose = () => { setShow(false) };
-    const handleShow = () => { setShow(true) };
-
-    const setData = () => {
-        var number = Math.random() // 0.9394456857981651
-        var id = number.toString(36).substr(2, 9); // 'xtis06h6'
-
-        const authListener = () => {
-            auth.onAuthStateChanged((user) => {
-                setCreateUser(user.email)
-            })
-        }
-
-        authListener();
-
-        database.ref('data/' + id).set({
-            createDate: Date.now(),
-            subject: subject,
-            description: description,
-            status: 'new',
-            createUser: createUser,
-            assignedUser: createUser,
-            id: id
-        });
-
-        handleClose();
-    }
+    const [crudModalOnOpen, setCrudModalOnOpen] = useState(false);
 
     return (
-        <Container className="pt-3">
-            <Button variant="primary" onClick={handleShow}>
+        <>
+            <Button type="primary" onClick={() => setCrudModalOnOpen(true)}>
                 Create
             </Button>
-            <h3 className="pt-3">My Board</h3>
-            <Modal show={show} onHide={handleClose} size="lg">
-                <Modal.Header>
-                    <Modal.Title>Create issue</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form.Group>
-                        <Form.Label>Subject</Form.Label>
-                        <Form.Control
-                            type="text"
-                            onChange={(e) => setSubject(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            onChange={(e) => setDescription(e.target.value)}
-                            rows={8} />
-                    </Form.Group>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        variant="primary"
-                        onClick={setData}
-                        type="submit">
-                        Save
-                    </Button>
-                    <Button variant="light" onClick={handleClose}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <TaskList />
-        </Container>
+            <CrudModal
+                onShow={crudModalOnOpen}
+                method={'create'}
+            />
+        </>
     );
 }
 

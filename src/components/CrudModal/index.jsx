@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
-import { database } from '../../firebase';
+import { Modal, Form, Input, Dropdown, Menu } from 'antd';
+import { database, auth } from '../../firebase';
 
 const CrudModal = props => {
-    const [subject, setSubject] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [assignedUser, setAssignedUser] = useState(null);
+    const [subject, setSubject] = useState('');
+    const [description, setDescription] = useState('');
+    // const [assignedUser, setAssignedUser] = useState('');
     const [visible, setVisible] = useState(false);
+    const [createUser, setCreateUser] = useState(null);
 
     const deleteIssue = () => {
         let issueRef = database.ref('data/' + props.data.id);
         issueRef.remove();
-        props.onHide();
+        setVisible(false);
     }
 
-    const updateIssue = () => {
+    const updateData = () => {
 
         database.ref('data/' + props.data.id).set({
             subject: subject,
@@ -26,32 +27,70 @@ const CrudModal = props => {
             id: props.data.id
         });
 
-        props.onHide();
+        setVisible(false);
+    }
+
+
+    const authListener = () => {
+        auth.onAuthStateChanged((user) => {
+            setCreateUser(user.email)
+        })
+    }
+
+    const setData = () => {
+        var number = Math.random() // 0.9394456857981651
+        var id = number.toString(36).substr(2, 9); // 'xtis06h6'
+
+        database.ref('data/' + id).set({
+            createDate: Date.now(),
+            subject: subject,
+            description: description,
+            status: 'new',
+            createUser: createUser,
+            assignedUser: createUser,
+            id: id
+        });
+
+        setVisible(false);
     }
 
     useEffect(() => {
-        setSubject(props.data ? props.data.subject : '')
-        setDescription(props.data ? props.data.description : '')
-        setAssignedUser(props.data ? props.data.assignedUser : '')
-        console.log(props);
         setVisible(props.onShow);
+        // setSubject(props.data ? props.data.subject : '')
+        // setDescription(props.data ? props.data.description : '')
+        // setAssignedUser(props.data ? props.data.assignedUser : '')
+        console.log(props);
+        authListener();
     }, [props]);
+
+    const { TextArea } = Input;
+
+    const menu = (
+        <Menu>
+            <Menu.Item key="1" danger onClick={deleteIssue}>Delete</Menu.Item>
+            <Menu.Item key="2">2nd item</Menu.Item>
+            <Menu.Item key="3">3rd item</Menu.Item>
+        </Menu>
+    );
+
+    const onOk = props.method === 'create' ? () => setData() : () => setVisible(false) || updateData()
 
     return (
         <Modal
             title="issue"
             visible={visible}
-            onOk={() => updateIssue}
+            onOk={onOk}
             onCancel={() => setVisible(false)}
             width={650}
         >
-            <Button variant="danger" onClick={deleteIssue}>
-                Delete
-            </Button>
-            <Form>
+            <Form
+                layout="vertical"
+                labelCol={{ span: 6 }}
+            >
+                <Dropdown.Button overlay={menu}></Dropdown.Button>
                 <Form.Item
-                    label="subject"
-                    name="basic"
+                    label="Subject"
+                    name="subject"
                     onChange={(e) => setSubject(e.target.value)}
                     rules={[
                         {
@@ -59,13 +98,13 @@ const CrudModal = props => {
                             message: 'Please input your Email!',
                         },
                     ]}
-                    defaultValue={subject}
+                    initialValue={props.data ? props.data.subject : ''}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Description"
-                    name="basic"
+                    label="Assigner User"
+                    name="assignedUser"
                     onChange={(e) => setDescription(e.target.value)}
                     rules={[
                         {
@@ -73,9 +112,23 @@ const CrudModal = props => {
                             message: 'Please input your Email!',
                         },
                     ]}
-                    defaultValue={description}
+                    initialValue={props.data ? props.data.assignedUser : ''}
                 >
-                    <Input />
+                    <Input disabled />
+                </Form.Item>
+                <Form.Item
+                    label="Description"
+                    name="description"
+                    onChange={(e) => setDescription(e.target.value)}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Email!',
+                        },
+                    ]}
+                    initialValue={props.data ? props.data.description : ''}
+                >
+                    <TextArea rows={6} />
                 </Form.Item>
             </Form>
         </Modal>

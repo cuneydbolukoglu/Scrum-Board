@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom';
-import Tasklist from '../components/TaskList';
+import Tasklist from '../components/TaskList/';
 
 const Private = props => {
     const haslogin = localStorage.getItem("token");

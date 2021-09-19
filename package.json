@@ -1,18 +1,19 @@
 {
-  "name": "task-board-app",
+  "name": "Scrum-Board",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
-    "antd": "^4.16.2",
-    "bootstrap": "^5.0.1",
+    "bootstrap": "^5.1.0",
     "firebase": "^8.2.4",
     "md5": "^2.3.0",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "^2.0.0-beta.6",
     "react-dom": "^17.0.1",
+    "react-i18next": "^11.12.0",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"

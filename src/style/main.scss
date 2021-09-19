@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;800;900&display=swap");
+@import "./404.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -8,16 +11,15 @@ html,
 body {
     width: 100%;
     height: 100%;
-    padding: 0px 20px;
 }
 
-a {
-    color: black;
-    text-decoration: none;
+h1{
+    margin-bottom: 50px;
+}
 
-    &:hover {
-        text-decoration: none;
-    }
+h2{
+    font-size: 16px;
+    margin-top: 15px;
 }
 
 .error {
@@ -34,34 +36,28 @@ a {
 .full-screen {
     position: absolute;
     display: flex;
-    width: 100%;
     height: 100%;
     align-items: center;
     justify-content: center;
 }
 
-#components-layout-demo-custom-trigger .trigger {
-    padding: 0 24px;
-    font-size: 18px;
-    line-height: 64px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+.issue {
+    background-color: #fff;
 
-#components-layout-demo-custom-trigger .trigger:hover {
-    color: #1890ff;
-}
+    .col-bg {
+        background-color: #f4f5f7;
+        border-radius: 3px;
+        margin: 0px 8px;
+    }
 
-#components-layout-demo-custom-trigger .logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.site-layout .site-layout-background {
-    background: #fff;
-}
-
-.ant-layout-header{
-    background: #fff !important;
+    .issue-box {
+        padding: 8px;
+        margin: 5px;
+        transition: 0.2s;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+        cursor: pointer;
+    }
 }

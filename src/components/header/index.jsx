@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Dropdown, Layout, Menu } from 'antd';
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { auth } from '../../firebase';
-import {
-    UserOutlined,
-    LogoutOutlined,
-} from '@ant-design/icons';
+import Logo from '../../assets/logo.svg';
+import { useSelector } from 'react-redux';
+import { langChange } from '../../redux/actions';
 
 const Index = props => {
     const [user, setUser] = useState('');
-    const { Header } = Layout;
+    const [email, setEmail] = useState('');
+    const lang = useSelector(state => state.langChangeReducer)
 
     const authListener = () => {
         auth.onAuthStateChanged((user) => {
-            user.displayName ? setUser(user.displayName) : setUser(user.email)
+            user ? setUser(user.displayName) : setUser(user.email)
+            setEmail(user.email);
         })
     }
 
@@ -30,31 +31,43 @@ const Index = props => {
     const location = useLocation();
     const match = location.pathname === '/login' | location.pathname === '/register'
 
-
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                <Link to="/profile">Profile</Link>
-            </Menu.Item>
-            <Menu.Item>
-                <Link to="/change-password">Change Password</Link>
-            </Menu.Item>
-            <Menu.Item icon={<LogoutOutlined />} danger onClick={onLogout}>Log out</Menu.Item>
-        </Menu>
-    );
-
     return (
         !match &&
-        <Header
-            className="site-layout-background"
-            style={{ padding: '10px' }}>
-            <h4> </h4>
-            <Dropdown overlay={menu}>
-                <Link className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                    <UserOutlined /> {user}
-                </Link>
-            </Dropdown>
-        </Header>
+        <header>
+            <Navbar collapseOnSelect expand="lg" bg="light" className="mb-5">
+                <Container>
+                    <Navbar.Brand as={Link} to="/">
+                        <img
+                            alt=""
+                            src={Logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                        />{' '}
+                        Scrum Board
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse className="justify-content-end">
+                        <Nav>
+                            <Nav.Link as={Link} to="/">Home</Nav.Link>
+                            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                            <NavDropdown title={lang.toUpperCase()} id="collasible-nav-dropdown">
+                                <NavDropdown.Item onClick={() => langChange("tr")}>TR</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={() => langChange("en")}>EN</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                        <NavDropdown title={user} id="collasible-nav-dropdown">
+                            <NavDropdown.Item>{email}</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/change-password">Change Password</NavDropdown.Item>
+                            <NavDropdown.Item onClick={onLogout}>Logout</NavDropdown.Item>
+                        </NavDropdown>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </header>
     )
 }
 

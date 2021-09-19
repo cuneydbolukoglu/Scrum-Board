@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 import { auth } from '../firebase';
 import firebase from 'firebase';
 import ErrorMessage from '../components/error-message';
 import { NEW_PASSWORD } from '../components/message/message';
 import md5 from 'md5';
-import { Form, Input, Button } from 'antd';
 
 const ChangePassword = props => {
     const [currentPassword, setCurrentPassword] = useState(null);
@@ -48,84 +48,27 @@ const ChangePassword = props => {
         history.push("/");
     }
 
-    const layout = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 16,
-        },
-    };
-    const tailLayout = {
-        wrapperCol: {
-            offset: 8,
-            span: 16,
-        },
-    };
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
-
-
     return (
         haslogin ?
-            <Form
-                {...layout}
-                name="basic"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-            >
-                <Form.Item
-                    label="Current Password"
-                    name="Current password"
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Current password!',
-                        },
-                    ]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item
-                    label="New Password"
-                    name="New password"
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your New password!',
-                        },
-                    ]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item {...tailLayout}>
-                    <Button
-                        onClick={onChangePasswordPress}
-                        type="primary"
-                        htmlType="submit">
-                        Change Password
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Current Password</Form.Label>
+                    <Form.Control type="password" placeholder="Current password" onChange={(e) => setCurrentPassword(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicNewPassword">
+                    <Form.Label>New Password</Form.Label>
+                    <Form.Control type="password" placeholder="New password" onChange={(e) => setNewPassword(e.target.value)} />
+                    <Form.Text className="text-muted">
+                        We'll never share your password with anyone else.
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={onChangePasswordPress}>
+                    Change Password
                 </Button>
-
-                    <Button
-                        onClick={onCancel}>
-                        Cancel
-                   </Button>
+                <Button variant="light" type="submit" onClick={onCancel}>
+                    Cancel
+                </Button>
                 <ErrorMessage message={errorMessage} result={errorResult} />
-                </Form.Item>
-
             </Form>
             : <Redirect to="/login" />
     )

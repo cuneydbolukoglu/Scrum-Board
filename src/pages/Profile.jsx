@@ -3,11 +3,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
 import ErrorMessage from '../components/error-message';
 import { CHANGE_USERNAME } from '../components/message/message';
-import { Form, Input, Button } from 'antd';
+import { Form, Button } from 'react-bootstrap';
 
 
 const Profile = props => {
-    const [name, setName] = useState(null);
+    const [name, setName] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
 
@@ -40,70 +40,23 @@ const Profile = props => {
         history.push("/");
     }
 
-    const layout = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 16,
-        },
-    };
-    const tailLayout = {
-        wrapperCol: {
-            offset: 8,
-            span: 16,
-        },
-    };
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
-
     return (
         haslogin ?
-            <Form
-                {...layout}
-                name="basic"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-            >
-                <Form.Item
-                    label="Your Full Name"
-                    name="Your Full Name"
-                    initialValue={name}
-                    onChange={(e) => setName(e.target.value)}
-                    rules={[
-                        {
-                            required: false,
-                            message: 'Please input your Name!',
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item {...tailLayout}>
-                    <Button
-                        onClick={updateUserName}
-                        type="primary"
-                        htmlType="submit">
-                        Change Display Name
-                    </Button>
-
-                    <Button
-                        onClick={onCancel}>
-                        Cancel
-                    </Button>
-                    <ErrorMessage message={errorMessage} result={errorResult} />
-                </Form.Item>
-
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Your Full Name</Form.Label>
+                    <Form.Control type="text" value={name} placeholder="Your Full Name" onChange={(e) => setName(e.target.value)} />
+                    <Form.Text className="text-muted">
+                        We'll never share your name with anyone else.
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={updateUserName}>
+                    Change Display Name
+                </Button>
+                <Button variant="light" type="submit" onClick={onCancel}>
+                    Cancel
+                </Button>
+                <ErrorMessage message={errorMessage} result={errorResult} />
             </Form>
             : <Redirect to="/login" />
     )

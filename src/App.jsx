@@ -7,10 +7,12 @@ import Errorpage from './pages/404';
 import Private from './pages/Private';
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
+import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-      <Router>
+    <Router>
+      <Container>
         <Header />
         <Switch>
           <Route exact path="/login" component={Login} />
@@ -21,7 +23,8 @@ function App() {
           <Route component={Errorpage} />
         </Switch>
         <Footer />
-      </Router>
+      </Container>
+    </Router>
   )
 }
 

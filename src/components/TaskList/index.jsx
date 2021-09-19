@@ -36,7 +36,7 @@ const TaskList = props => {
                             <Card key={index} border="danger" style={{ cursor: "pointer", marginBottom: "8px" }} onClick={() => setIssueShow(item) || setShowModal(true)}>
                                 <Card.Header>{item.subject}</Card.Header>
                                 <Card.Body>
-                                    <Card.Title>{item.assignedUser.charAt(0)}</Card.Title>
+                                    <Card.Title className="avatar">{item.assignedUser.charAt(0)}</Card.Title>
                                     <Card.Text>{item.description}</Card.Text>
                                 </Card.Body>
                             </Card>
@@ -50,7 +50,7 @@ const TaskList = props => {
                             <Card key={index} border="primary" style={{ cursor: "pointer", marginBottom: "8px" }} onClick={() => setIssueShow(item) || setShowModal(true)}>
                                 <Card.Header>{item.subject}</Card.Header>
                                 <Card.Body>
-                                    <Card.Title>{item.assignedUser.charAt(0)}</Card.Title>
+                                    <Card.Title className="avatar">{item.assignedUser.charAt(0)}</Card.Title>
                                     <Card.Text>{item.description}</Card.Text>
                                 </Card.Body>
                             </Card>
@@ -64,7 +64,7 @@ const TaskList = props => {
                             <Card key={index} border="success" style={{ cursor: "pointer", marginBottom: "8px" }} onClick={() => setIssueShow(item) || setShowModal(true)}>
                                 <Card.Header>{item.subject}</Card.Header>
                                 <Card.Body>
-                                    <Card.Title>{item.assignedUser.charAt(0)}</Card.Title>
+                                    <Card.Title className="avatar">{item.assignedUser.charAt(0)}</Card.Title>
                                     <Card.Text>{item.description}</Card.Text>
                                 </Card.Body>
                             </Card>

@@ -55,13 +55,13 @@ const CrudModalEdit = props => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCreate">
                         <Form.Label>Status</Form.Label>
-                        <Form.Control as="select" onChange={(e) => setStatus(e.target.value)} value={status} placeholder="" required >
+                        <Form.Select onChange={(e) => setStatus(e.target.value)} value={status} placeholder="" required >
                             {
                                 Status.map((item, index) => (
                                     <option value={item} key={index}>{item}</option>
                                 ))
                             }
-                        </Form.Control>
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCreate">
                         <Form.Label>Assigned User</Form.Label>
@@ -71,7 +71,8 @@ const CrudModalEdit = props => {
                         <Form.Label>Description</Form.Label>
                         <Form.Control as="textarea" rows={10} onChange={(e) => setDescription(e.target.value)} value={description} placeholder="" required />
                     </Form.Group>
-                    <Button variant="primary" type="submit">Save</Button>
+                    <Button size="sm" variant="primary" type="submit">Save</Button>
+                    <Button size="sm" variant="light" onClick={()=>props.onClose()}>Cancel</Button>
                 </Form>
             </Modal.Body>
         </Modal>

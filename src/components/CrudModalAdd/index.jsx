@@ -49,7 +49,8 @@ const CrudModalAdd = props => {
                         <Form.Label>Description</Form.Label>
                         <Form.Control as="textarea" rows={10} onChange={(e) => setDescription(e.target.value)} value={description} placeholder="" required />
                     </Form.Group>
-                    <Button variant="primary" type="submit">Save</Button>
+                    <Button size="sm" variant="primary" type="submit">Create</Button>
+                    <Button size="sm" variant="light" onClick={()=>props.onClose()}>Cancel</Button>
                 </Form>
             </Modal.Body>
         </Modal>

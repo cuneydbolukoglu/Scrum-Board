@@ -5,6 +5,7 @@ import { auth } from '../../firebase';
 import Logo from '../../assets/logo.svg';
 import { useSelector } from 'react-redux';
 import { langChange } from '../../redux/actions';
+import i18n from '../../i18n';
 
 const Index = props => {
     const [user, setUser] = useState('');
@@ -49,8 +50,8 @@ const Index = props => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
-                            <Nav.Link as={Link} to="/">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                            <Nav.Link as={Link} to="/">{i18n.t('home')}</Nav.Link>
+                            <Nav.Link as={Link} to="/contact">{i18n.t('contact')}</Nav.Link>
                             <NavDropdown title={lang.toUpperCase()} id="collasible-nav-dropdown">
                                 <NavDropdown.Item onClick={() => langChange("tr")}>TR</NavDropdown.Item>
                                 <NavDropdown.Divider />

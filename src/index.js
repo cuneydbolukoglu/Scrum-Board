@@ -7,6 +7,7 @@ import './style/main.scss';
 
 import { Provider } from "react-redux";
 import { store } from "./redux";
+import "./i18n";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -6,6 +6,7 @@ const langState = document.documentElement.lang ? document.documentElement.lang 
 const langChangeReducer = (state = langState, action) => {
   switch (action.type) {
     case LANG_CHANGE:
+      localStorage.setItem("i18nextLng", action.lang);
       return action.lang;
 
     default:

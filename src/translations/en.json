@@ -1,6 +1,15 @@
 {
     "translations": {
         "home": "Home",
-        "contact": "Contact"
+        "contact": "Contact",
+        "profile": "Profile",
+        "change_password": "Change Password",
+        "logout": "Logout",
+        "This page could not be found.": "This page could not be found.",
+        "create": "Create",
+        "Copyright": "Copyright",
+        "TODO": "TO DO",
+        "INPROGRESS": "IN PROGRESS",
+        "DONE": "DONE"
     }
 }

@@ -3,14 +3,23 @@ import { useLocation, Link } from 'react-router-dom';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { auth } from '../../firebase';
 import Logo from '../../assets/logo.svg';
+import { useTranslation } from "react-i18next";
+
 import { useSelector } from 'react-redux';
-import { langChange } from '../../redux/actions';
-import i18n from '../../i18n';
+import { dataChange } from '../../redux/actions';
 
 const Index = props => {
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
-    const lang = useSelector(state => state.langChangeReducer)
+    const { i18n } = useTranslation();
+
+    const data = useSelector(state => state)
+
+    console.log(data);
+    dataChange("cuneyd");
+
+    const location = useLocation();
+    const match = location.pathname === '/login' | location.pathname === '/register'
 
     const authListener = () => {
         auth.onAuthStateChanged((user) => {
@@ -29,8 +38,9 @@ const Index = props => {
         localStorage.removeItem("token");
     }
 
-    const location = useLocation();
-    const match = location.pathname === '/login' | location.pathname === '/register'
+    const changeLanguage = lng => {
+        i18n.changeLanguage(lng);
+    };
 
     return (
         !match &&
@@ -52,18 +62,18 @@ const Index = props => {
                         <Nav>
                             <Nav.Link as={Link} to="/">{i18n.t('home')}</Nav.Link>
                             <Nav.Link as={Link} to="/contact">{i18n.t('contact')}</Nav.Link>
-                            <NavDropdown title={lang.toUpperCase()} id="collasible-nav-dropdown">
-                                <NavDropdown.Item onClick={() => langChange("tr")}>TR</NavDropdown.Item>
+                            <NavDropdown title={localStorage.getItem("i18nextLng").toUpperCase()} id="collasible-nav-dropdown">
+                                <NavDropdown.Item onClick={() => changeLanguage("tr")}>TR</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={() => langChange("en")}>EN</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => changeLanguage("en")}>EN</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <NavDropdown title={user} id="collasible-nav-dropdown">
                             <NavDropdown.Item>{email}</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/change-password">Change Password</NavDropdown.Item>
-                            <NavDropdown.Item onClick={onLogout}>Logout</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/profile">{i18n.t('profile')}</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/change-password">{i18n.t('change_password')}</NavDropdown.Item>
+                            <NavDropdown.Item onClick={onLogout}>{i18n.t('logout')}</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Collapse>
                 </Container>

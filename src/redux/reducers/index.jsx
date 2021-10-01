@@ -1,19 +1,16 @@
-import { LANG_CHANGE, GET_DATA, SET_DATA, SET_USER } from '../action-types';
+import { GET_DATA, SET_DATA, SET_USER } from '../action-types';
 import { combineReducers } from "redux";
 
-const langState = document.documentElement.lang ? document.documentElement.lang : "en"
-
-const langChangeReducer = (state = langState, action) => {
+const dataReducer = (state = "data", action) => {
   switch (action.type) {
-    case LANG_CHANGE:
-      localStorage.setItem("i18nextLng", action.lang);
-      return action.lang;
+    case GET_DATA:
+      return action.data;
 
     default:
       return state;
   }
 }
 
-const rootReducer = combineReducers({ langChangeReducer });
+const rootReducer = combineReducers({ dataReducer });
 
 export default rootReducer;

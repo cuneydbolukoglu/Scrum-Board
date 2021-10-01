@@ -1,6 +1,15 @@
 {
     "translations": {
         "home": "Ana Sayfa",
-        "contact": "İletişim"
+        "contact": "İletişim",
+        "profile": "Profil",
+        "change_password": "Şifre Değiştir",
+        "logout": "Çıkış Yap",
+        "This page could not be found.": "Sayfa bulunamadı.",
+        "create": "Ekle",
+        "Copyright": "Telif Hakkı",
+        "TODO": "YAPILACAKLAR",
+        "INPROGRESS": "DEVAM EDEN",
+        "DONE": "YAPILDI"
     }
 }

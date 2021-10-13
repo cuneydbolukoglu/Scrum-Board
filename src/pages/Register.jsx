@@ -5,6 +5,7 @@ import ErrorMessage from '../components/error-message';
 import { USER_CREATE } from '../components/message/message';
 import { auth } from '../firebase';
 import md5 from 'md5';
+import { useTranslation } from "react-i18next";
 
 const Register = props => {
     const [email, setEmail] = useState(null);
@@ -13,6 +14,7 @@ const Register = props => {
     const [errorResult, setErrorResult] = useState(null);
     const [name, setName] = useState(null);
     const [validated, setValidated] = useState(false);
+    const { i18n } = useTranslation();
 
     const history = useHistory();
 
@@ -58,32 +60,32 @@ const Register = props => {
     }
 
     return (
-        <section className="full-screen">
+        <section className="justify-content-center align-items-center d-flex">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <h1>REGISTER</h1>
+                <h1>{i18n.t("Register")}</h1>
                 <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Display Name</Form.Label>
-                    <Form.Control type="text" placeholder="Please input your Name" onChange={(e) => setName(e.target.value)} required />
+                    <Form.Label>{i18n.t("Name")}</Form.Label>
+                    <Form.Control type="text" placeholder={i18n.t("Please input your Name")} onChange={(e) => setName(e.target.value)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Please input your Email" onChange={(e) => setEmail(e.target.value)} required />
+                    <Form.Label>{i18n.t('Email-address')}</Form.Label>
+                    <Form.Control type="email" placeholder={i18n.t("Please input your Email")} onChange={(e) => setEmail(e.target.value)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Please input your Password" onChange={(e) => setPassword(e.target.value)} required />
+                    <Form.Label>{i18n.t('Password')}</Form.Label>
+                    <Form.Control type="password" placeholder={i18n.t("Please input your Password")} onChange={(e) => setPassword(e.target.value)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Remember me" />
+                    <Form.Check type="checkbox" label={i18n.t("Remember-me")} />
                 </Form.Group>
                 <ErrorMessage message={errorMessage} result={errorResult} />
                 <Button variant="primary" type="submit">
-                    Submit
+                    {i18n.t("Register")}
                 </Button>
                 <Link to='/login'>
                     <Button
                         variant="light"
-                    >Login</Button>
+                    >{i18n.t("Login")}</Button>
                 </Link>
             </Form>
         </section>

@@ -14,11 +14,11 @@ body {
 }
 
 h1{
-    margin-bottom: 50px;
+    margin-bottom: 50px !important;
 }
 
 h2{
-    font-size: 16px;
+    font-size: 16px !important;
     margin-top: 15px;
 }
 
@@ -31,14 +31,6 @@ h2{
 .success {
     color: green;
     padding-top: 20px;
-}
-
-.full-screen {
-    position: absolute;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
 }
 
 .issue {

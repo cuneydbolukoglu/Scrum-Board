@@ -10,6 +10,16 @@
         "Copyright": "Telif Hakkı",
         "TODO": "YAPILACAKLAR",
         "INPROGRESS": "DEVAM EDEN",
-        "DONE": "YAPILDI"
+        "DONE": "YAPILDI",
+        "Login": "Giriş Yap",
+        "Email-address": "Mail adresi",
+        "Password": "Şifre",
+        "Remember-me":"Beni hatırla",
+        "Create-an-Account": "Bir hesap oluşturun",
+        "Please input your Email":"Lütfen Mail adresinizi girin",
+        "Please input your Password":"Lütfen Şifrenizi girin",
+        "Register": "Kayıt Ol",
+        "Name": "İsminiz",
+        "Please input your Name": "Lütfen İsminizi girin"
     }
 }

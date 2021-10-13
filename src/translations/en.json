@@ -10,6 +10,15 @@
         "Copyright": "Copyright",
         "TODO": "TO DO",
         "INPROGRESS": "IN PROGRESS",
-        "DONE": "DONE"
+        "DONE": "DONE",
+        "Login": "Login",
+        "Email-address": "Email address",
+        "Password": "Password",
+        "Remember-me": "Remember Me",
+        "Create-an-Account": "Create an Account",
+        "Please input your Email": "Please input your Email",
+        "Please input your Password": "Please input your Password",
+        "Register": "Register",
+        "Please input your Name": "Please input your Name"
     }
 }

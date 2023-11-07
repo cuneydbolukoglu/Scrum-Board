@@ -61,7 +61,7 @@ const Register = props => {
 
     return (
         <section className="justify-content-center align-items-center d-flex">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form style={{ width: 320 }} noValidate validated={validated} onSubmit={handleSubmit}>
                 <h1>{i18n.t("Register")}</h1>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>{i18n.t("Name")}</Form.Label>

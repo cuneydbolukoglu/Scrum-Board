@@ -12,8 +12,8 @@ import { Container } from 'react-bootstrap';
 function App() {
   return (
     <Router>
+      <Header />
       <Container>
-        <Header />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
@@ -22,8 +22,8 @@ function App() {
           <Route exact path="/change-password" component={ChangePassword} />
           <Route component={Errorpage} />
         </Switch>
-        <Footer />
       </Container>
+      <Footer />
     </Router>
   )
 }

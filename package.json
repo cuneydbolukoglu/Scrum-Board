@@ -1,6 +1,7 @@
 {
   "name": "Scrum-Board",
   "version": "0.1.0",
+  "author": "Cüneyd",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -10,9 +11,9 @@
     "firebase": "^8.2.4",
     "i18next-browser-languagedetector": "^6.1.2",
     "md5": "^2.3.0",
-    "react": "^17.0.1",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.0.0-beta.6",
-    "react-dom": "^17.0.1",
+    "react-dom": "^18.2.0",
     "react-i18next": "^11.12.0",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",

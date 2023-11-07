@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { database } from '../../firebase';
+import i18n from '../../i18n';
 
 const CrudModalEdit = props => {
     const [subject, setSubject] = useState('');
@@ -44,17 +45,17 @@ const CrudModalEdit = props => {
     return (
         <Modal show={props.show} onHide={() => props.onClose()}>
             <Modal.Header closeButton>
-                <Modal.Title>Edit</Modal.Title>
-                <Button className="position-absolute" style={{ right: "45px" }} variant="danger" size="sm" onClick={deleteIssue}>Delete</Button>
+                <Modal.Title>{i18n.t("edit")}</Modal.Title>
+                <Button className="position-absolute" style={{ right: "45px" }} variant="danger" size="sm" onClick={deleteIssue}>{i18n.t("delete")}</Button>
             </Modal.Header>
             <Modal.Body>
                 <Form noValidate onSubmit={updateData}>
                     <Form.Group className="mb-3" controlId="formBasicSubject">
-                        <Form.Label>Subject</Form.Label>
+                        <Form.Label>{i18n.t("subject")}</Form.Label>
                         <Form.Control type="text" onChange={(e) => setSubject(e.target.value)} value={subject} placeholder="" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCreate">
-                        <Form.Label>Status</Form.Label>
+                        <Form.Label>{i18n.t("status")}</Form.Label>
                         <Form.Select onChange={(e) => setStatus(e.target.value)} value={status} placeholder="" required >
                             {
                                 Status.map((item, index) => (
@@ -68,7 +69,7 @@ const CrudModalEdit = props => {
                         <Form.Control disabled type="text" onChange={(e) => setAssignedUser(e.target.value)} value={assignedUser} placeholder="" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicDesc">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>{i18n.t("description")}</Form.Label>
                         <Form.Control as="textarea" rows={10} onChange={(e) => setDescription(e.target.value)} value={description} placeholder="" required />
                     </Form.Group>
                     <Button size="sm" variant="primary" type="submit">Save</Button>

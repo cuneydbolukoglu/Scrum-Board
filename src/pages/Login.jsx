@@ -49,10 +49,10 @@ const Login = props => {
 
     return (
         <section className="justify-content-center align-items-center d-flex">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form style={{ width: 320 }} noValidate validated={validated} onSubmit={handleSubmit}>
                 <h1>{i18n.t('Login')}</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>{i18n.t('Email-address')}</Form.Label>
+                    <Form.Label>{i18n.t('username')}</Form.Label>
                     <Form.Control type="email" placeholder={i18n.t("Please input your Email")} onChange={(e) => setEmail(e.target.value)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">

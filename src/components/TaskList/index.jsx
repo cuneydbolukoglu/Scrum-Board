@@ -30,7 +30,7 @@ const TaskList = props => {
     return (
         <>
             <Create />
-            <Row className="issue mt-3" gutter={[16, 16]}>
+            <Row className="issue-row issue mt-3" gutter={[16, 16]}>
                 <Col className="col-bg" span={7}>
                     <h2>{i18n.t('TODO')} {data.filter(item => item.status === "new").length}</h2>
                     {

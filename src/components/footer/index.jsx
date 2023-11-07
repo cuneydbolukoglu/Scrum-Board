@@ -4,15 +4,14 @@ import { useTranslation } from "react-i18next";
 
 const Index = props => {
     const { i18n } = useTranslation();
-    const location = useLocation();
-    const match = location.pathname === '/login' | location.pathname === '/register'
+    // const location = useLocation();
+    // const match = location.pathname === '/login' | location.pathname === '/register'
 
     return (
-        !match &&
         <footer>
-            <Navbar bg="dark" variant="dark" className="mt-5 p-2">
+            <Navbar className="mt-1 p-2">
                 <Navbar.Text>
-                    {i18n.t('Copyright')}
+                    {i18n.t('Copyright')} © Cüneyd
                 </Navbar.Text>
             </Navbar>
         </footer>

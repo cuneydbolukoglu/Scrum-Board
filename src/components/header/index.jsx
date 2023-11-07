@@ -75,7 +75,7 @@ const Index = props => {
                 </Navbar>
             </header>
             :
-            <>
+            <div>
                 <header>
                     <Navbar collapseOnSelect expand="lg" bg="light" className="mb-5">
                         <Container>
@@ -86,32 +86,32 @@ const Index = props => {
                                     width="30"
                                     height="30"
                                     className="d-inline-block align-top"
-                                />{' '}
-                                Scrum Board
+                                />
+                                {'Scrum Board'}
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             <Navbar.Collapse className="justify-content-end">
                                 <Nav>
-                                    <Nav.Link as={Link} to="/">{i18n.t('home')}</Nav.Link>
-                                    <Nav.Link as={Link} to="/contact">{i18n.t('contact')}</Nav.Link>
+                                    {/* <Nav.Link as={Link} to="/">{i18n.t('home')}</Nav.Link>
+                                    <Nav.Link as={Link} to="/contact">{i18n.t('contact')}</Nav.Link> */}
+                                    <NavDropdown title={user} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item>{email}</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item as={Link} to="/profile">{i18n.t('profile')}</NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/change-password">{i18n.t('change_password')}</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={onLogout}>{i18n.t('logout')}</NavDropdown.Item>
+                                    </NavDropdown>
                                     <NavDropdown title={localStorage.getItem("i18nextLng").toUpperCase()} id="collasible-nav-dropdown">
                                         <NavDropdown.Item onClick={() => changeLanguage("tr")}>TR</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item onClick={() => changeLanguage("en")}>EN</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
-                                <NavDropdown title={user} id="collasible-nav-dropdown">
-                                    <NavDropdown.Item>{email}</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item as={Link} to="/profile">{i18n.t('profile')}</NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="/change-password">{i18n.t('change_password')}</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={onLogout}>{i18n.t('logout')}</NavDropdown.Item>
-                                </NavDropdown>
                             </Navbar.Collapse>
                         </Container>
                     </Navbar>
                 </header>
-            </>
+            </div>
     )
 }
 

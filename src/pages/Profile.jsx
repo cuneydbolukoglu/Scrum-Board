@@ -4,7 +4,7 @@ import { auth } from '../firebase';
 import ErrorMessage from '../components/error-message';
 import { CHANGE_USERNAME } from '../components/message/message';
 import { Form, Button } from 'react-bootstrap';
-
+import i18n from '../i18n';
 
 const Profile = props => {
     const [name, setName] = useState('');
@@ -20,6 +20,7 @@ const Profile = props => {
             console.log(CHANGE_USERNAME)
             setErrorMessage(CHANGE_USERNAME);
             setErrorResult(true);
+            window.location.reload();
         }).catch((error) => {
             setErrorMessage(error)
             setErrorResult(false);
@@ -29,7 +30,7 @@ const Profile = props => {
     const authListener = () => {
         auth.onAuthStateChanged((user) => {
             user.displayName ? setName(user.displayName) : setName('')
-        })
+        });
     }
 
     useEffect(() => {
@@ -54,7 +55,7 @@ const Profile = props => {
                         Change Display Name
                     </Button>
                     <Button variant="light" type="submit" onClick={onCancel}>
-                        Cancel
+                        {i18n.t("cancel")}
                     </Button>
                     <ErrorMessage message={errorMessage} result={errorResult} />
                 </Form>

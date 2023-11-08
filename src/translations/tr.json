@@ -25,6 +25,7 @@
         "status": "Durum",
         "subject": "Konu",
         "edit": "Düzenle",
-        "delete": "Sil"
+        "delete": "Sil",
+        "cancel": "İptal"
     }
 }

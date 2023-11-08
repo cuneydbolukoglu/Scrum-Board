@@ -26,6 +26,8 @@
         "subject": "Konu",
         "edit": "Düzenle",
         "delete": "Sil",
-        "cancel": "İptal"
+        "cancel": "İptal",
+        "change_display_name": "Görünün Adı Değiştir",
+        "your_full_name": "Tam adınız"
     }
 }

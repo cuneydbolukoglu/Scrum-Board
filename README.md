@@ -9,7 +9,6 @@ REACT_APP_STORAGEBUCKET=""
 REACT_APP_MESSAGING_SENDER_ID=""
 REACT_APP_APP_ID=""
 ```
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

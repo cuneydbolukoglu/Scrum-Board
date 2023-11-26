@@ -1,3 +1,14 @@
+# Environment
+.env dosyanızı ana dizine ekleyip oluşturun
+```
+REACT_APP_API_KEY=""
+REACT_APP_AUTHDOMAIN=""
+REACT_APP_BASEURL=""
+REACT_APP_PROJECT_ID=""
+REACT_APP_STORAGEBUCKET=""
+REACT_APP_MESSAGING_SENDER_ID=""
+REACT_APP_APP_ID=""
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Firebase Deploy 
+
+https://cuneyd.medium.com/react-uygulam%C4%B1n%C4%B1z%C4%B1-kolay-bir-%C5%9Fekilde-firebase-e-deploy-edin-c1516007d87a

@@ -37,9 +37,9 @@ const CrudModalEdit = props => {
     }
 
     const Status = [
-        "new",
-        "in-progress",
-        "done"
+        i18n.t("new"),
+        i18n.t("in-progress"),
+        i18n.t("done"),
     ]
 
     return (
@@ -65,15 +65,15 @@ const CrudModalEdit = props => {
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCreate">
-                        <Form.Label>Assigned User</Form.Label>
+                        <Form.Label>{i18n.t("assigned_user")}</Form.Label>
                         <Form.Control disabled type="text" onChange={(e) => setAssignedUser(e.target.value)} value={assignedUser} placeholder="" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicDesc">
                         <Form.Label>{i18n.t("description")}</Form.Label>
                         <Form.Control as="textarea" rows={10} onChange={(e) => setDescription(e.target.value)} value={description} placeholder="" required />
                     </Form.Group>
-                    <Button size="sm" variant="primary" type="submit">Save</Button>
-                    <Button size="sm" variant="light" onClick={()=>props.onClose()}>Cancel</Button>
+                    <Button size="sm" variant="primary" type="submit">{i18n.t("save")}</Button>
+                    <Button size="sm" variant="light" onClick={()=>props.onClose()}>{i18n.t("cancel")}</Button>
                 </Form>
             </Modal.Body>
         </Modal>

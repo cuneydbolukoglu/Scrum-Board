@@ -28,6 +28,11 @@
         "delete": "Sil",
         "cancel": "İptal",
         "change_display_name": "Görünün Adı Değiştir",
-        "your_full_name": "Tam adınız"
+        "your_full_name": "Tam adınız",
+        "save": "Kaydet",
+        "assigned_user": "Atanmış Kullanıcı",
+        "new": "Yeni",
+        "in-progress": "Devam Eden",
+        "done": "Tamamlandı"
     }
 }

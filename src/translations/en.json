@@ -18,7 +18,24 @@
         "Please input your Email": "Please input your Email",
         "Please input your Password": "Please input your Password",
         "Register": "Register",
+        "name": "Name",
         "Please input your Name": "Please input your Name",
-        "username": "Usermame"
+        "username": "Usermame",
+        "description": "Açıklama",
+        "status": "Status",
+        "subject": "Subject",
+        "edit": "Edit",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "change_display_name": "Change Display Name",
+        "your_full_name": "Yout Full Name",
+        "save": "Save",
+        "assigned_user": "Assigned User",
+        "new": "New",
+        "in-progress": "In Progress",
+        "done": "Done",
+        "current_password": "Current Password",
+        "new_password": "New Password",
+        "password_description": "We'll never share your password with anyone else."
     }
 }

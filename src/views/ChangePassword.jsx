@@ -61,7 +61,7 @@ const ChangePassword = props => {
                     <Form.Label>{i18n.t("new_password")}</Form.Label>
                     <Form.Control type="password" placeholder={i18n.t("new_password")} onChange={(e) => setNewPassword(e.target.value)} />
                     <Form.Text className="text-muted">
-                        We'll never share your password with anyone else.
+                        {i18n.t("password_description")}
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={onChangePasswordPress}>

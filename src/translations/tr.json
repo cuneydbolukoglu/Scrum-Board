@@ -33,6 +33,9 @@
         "assigned_user": "Atanmış Kullanıcı",
         "new": "Yeni",
         "in-progress": "Devam Eden",
-        "done": "Tamamlandı"
+        "done": "Tamamlandı",
+        "current_password": "Mevcut Şifre",
+        "new_password": "Yeni Şifre",
+        "password_description": "Şifrenizi asla başkasıyla paylaşmayacağız."
     }
 }

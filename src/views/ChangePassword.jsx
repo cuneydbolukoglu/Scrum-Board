@@ -6,12 +6,14 @@ import firebase from 'firebase';
 import ErrorMessage from '../components/error-message';
 import { NEW_PASSWORD } from '../components/message/message';
 import md5 from 'md5';
+import { useTranslation } from "react-i18next";
 
 const ChangePassword = props => {
     const [currentPassword, setCurrentPassword] = useState(null);
     const [newPassword, setNewPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
+    const { i18n } = useTranslation();
 
     const history = useHistory();
 
@@ -52,21 +54,21 @@ const ChangePassword = props => {
         haslogin ?
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Current Password</Form.Label>
-                    <Form.Control type="password" placeholder="Current password" onChange={(e) => setCurrentPassword(e.target.value)} />
+                    <Form.Label>{i18n.t("current_password")}</Form.Label>
+                    <Form.Control type="password" placeholder={i18n.t("current_password")} onChange={(e) => setCurrentPassword(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicNewPassword">
-                    <Form.Label>New Password</Form.Label>
-                    <Form.Control type="password" placeholder="New password" onChange={(e) => setNewPassword(e.target.value)} />
+                    <Form.Label>{i18n.t("new_password")}</Form.Label>
+                    <Form.Control type="password" placeholder={i18n.t("new_password")} onChange={(e) => setNewPassword(e.target.value)} />
                     <Form.Text className="text-muted">
                         We'll never share your password with anyone else.
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={onChangePasswordPress}>
-                    Change Password
+                    {i18n.t("change_password")}
                 </Button>
                 <Button variant="light" type="submit" onClick={onCancel}>
-                    Cancel
+                    {i18n.t("cancel")}
                 </Button>
                 <ErrorMessage message={errorMessage} result={errorResult} />
             </Form>

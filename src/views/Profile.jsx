@@ -4,12 +4,13 @@ import { auth } from '../firebase';
 import ErrorMessage from '../components/error-message';
 import { CHANGE_USERNAME } from '../components/message/message';
 import { Form, Button } from 'react-bootstrap';
-import i18n from '../i18n';
+import { useTranslation } from "react-i18next";
 
 const Profile = props => {
     const [name, setName] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
     const [errorResult, setErrorResult] = useState(null);
+    const { i18n } = useTranslation();
 
     const haslogin = localStorage.getItem("token");
 

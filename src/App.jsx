@@ -1,12 +1,12 @@
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './components/header';
 import Footer from "./components/footer";
-import Login from './views/Login';
-import Register from './views/Register';
-import Errorpage from './views/404';
-import Private from './views/Private';
-import Profile from "./views/Profile";
-import ChangePassword from "./views/ChangePassword";
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Errorpage from './pages/404';
+import Private from './pages/Private';
+import Profile from "./pages/Profile";
+import ChangePassword from "./pages/ChangePassword";
 import { Container } from 'react-bootstrap';
 
 function App() {
